@@ -1,14 +1,13 @@
-const API_KEY = "f108f4fedb06a718196682fa7984d602";
+const API_KEY = 'f108f4fedb06a718196682fa7984d602';
 
-const locationInfo = document.querySelector(".location");
+const locationInfo = document.querySelector('.location');
 function FromKelvinToCelcius(value) {
   return Math.round((value - 273.15) * 100) / 100;
 }
 function getWeatherInfo(lat, lon) {
-  //   return fetch(
-  //     `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
-  //   ).then((res) => res.json());
-  return fetch(`http://localhost:3000/weather`).then((res) => res.json());
+  return fetch(
+    `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+  ).then((res) => res.json());
 }
 
 function successCallback(data) {

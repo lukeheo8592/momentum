@@ -68,6 +68,16 @@ const todoObj = {
     todoObj.todos.forEach((todo) => {
       todoObj.renderTodoItem(todo);
     });
+    domObj.todoList.onclick = todoObj.todoClickHandler;
+  },
+  todoClickHandler: function (e) {
+    if (
+      e.target.classList.contains('done') ||
+      e.target.classList.contains('update') ||
+      e.target.classList.contains('delete')
+    ) {
+      console.log(e.target);
+    }
   },
   addTodo: function (todo) {
     todoObj.todos.push(todo);

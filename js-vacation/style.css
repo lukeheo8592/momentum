@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto:wght@700&display=swap');
+@import './reset.css';
+
+:root {
+  --primary-color: #3f51b5;
+  --secondary-color: #9c27b0;
+  --accent-color: #e91e63;
+  --font-color: white;
+  --border-color: #9e9e9e;
+  --black-color: black;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'Indie Flower', 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.background-img,
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.background-img {
+  background-image: url('https://source.unsplash.com/random');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.background-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+
+main {
+  position: relative;
+  z-index: 3;
+  color: var(--font-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+main .main {
+  flex: 1 0 auto;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+}
+main .clock {
+  font-size: 10rem;
+}
+
+main .greeting {
+  font-size: 4rem;
+}
+
+.todo-container {
+  margin-top: 3rem;
+}
+
+.todo-container h1 {
+  font-size: 2rem;
+}
+
+.todo-form,
+.name-form {
+  width: 100%;
+  text-align: center;
+}
+
+.todo-form input {
+  border: 0;
+  border-bottom: 1px solid var(--font-color);
+  background-color: transparent;
+  width: 100%;
+  font-size: 2rem;
+  outline: none;
+  color: var(--font-color);
+}
+
+.name-form input {
+  border: 0;
+  border-bottom: 1px solid var(--font-color);
+  background-color: transparent;
+  width: 100%;
+  font-size: 2rem;
+  outline: none;
+  color: var(--font-color);
+}
+
+.name-form input[type='submit'] {
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 100px;
+  /* display: block; */
+  border: 0;
+  border: 1px solid var(--font-color);
+  border-radius: 1.5rem;
+  background-color: transparent;
+  font-size: 1rem;
+  outline: none;
+  color: var(--font-color);
+}

@@ -8,6 +8,12 @@ const util = {
   getZero: function (value) {
     return value < 10 ? `0${value}` : value;
   },
+  disabled: function (element) {
+    element.disabled = true;
+  },
+  enabled: function (element) {
+    element.disabled = false;
+  },
 };
 
 const clockObj = {
@@ -18,6 +24,11 @@ const clockObj = {
     return `${util.getZero(hour)}:${util.getZero(
       date.getMinutes()
     )}:${util.getZero(date.getSeconds())}`;
+  },
+  renderClock: function () {
+    setInterval(function () {
+      domObj.clock.innerHTML = clockObj.getClock();
+    }, 1000);
   },
 };
 
@@ -54,21 +65,37 @@ const greetingObj = {
     domObj.nameForm = document.querySelector(".todo-container .name-form");
     domObj.nameForm.onsubmit = domObj.submitHandler;
   },
+  renderGreeting: function () {
+    const currentName = localStorage.getItem(Constant.NAME);
+    greetingObj.getGreeting(currentName);
+    if (currentName) {
+      todoObj.renderTodo();
+    } else {
+      greetingObj.renderName();
+    }
+  },
 };
 
 const todoObj = {
   todos: [],
   renderTodo: function () {
     domObj.container.innerHTML = `<h1>What is your main focus for today?</h1>
-    <form class="todo-form">
-        <input type="text" name="todo" />
-    </form>`;
+      <form class="todo-form">
+          <input type="text" name="todo" />
+      </form>`;
     domObj.todoForm = document.querySelector(".todo-container .todo-form");
     domObj.todoForm.onsubmit = domObj.submitHandler;
     todoObj.todos.forEach((todo) => {
       todoObj.renderTodoItem(todo);
     });
     domObj.todoList.onclick = todoObj.todoClickHandler;
+  },
+  updateTodoList: function (id, todo) {
+    console.log(id, todo);
+    const idx = todoObj.todos.findIndex((todo) => todo.id === id);
+    todoObj.todos[idx] = todo;
+    console.log(todoObj.todos);
+    localStorage.setItem(Constant.TODOS, JSON.stringify(todoObj.todos));
   },
   renderInput: function (todo) {
     const input = document.createElement("input");
@@ -83,24 +110,30 @@ const todoObj = {
     return span;
   },
   todoClickHandler: function (e) {
-    const target = e.target.parentElement.previousElementSibling;
-    const todoid = e.target.parentElement.parentElement.dataset.id;
-    const targetID = todoObj.todos.find((e) => e.id === todoid);
+    const id = e.target.parentElement.parentElement.dataset.id;
+    const targetTodo = todoObj.todos.find((e) => e.id === id);
     if (e.target.classList.contains("done")) {
-      // e.target.style.backgroundcolor = "red";
-      if (targetID.done) {
-        target.style.backgroundColor = "transparent";
-        targetID.done = false;
-        e.target.nextElementSibling.nextElementSibling.style.opacity = "0.1";
+      console.log(todoObj.todos, targetTodo);
+      // console.log(targetTodo);
+      const targetElement =
+        e.target.parentElement.previousElementSibling.firstElementChild;
+      if (targetElement.classList.contains("todo-done")) {
+        targetElement.classList.remove("todo-done");
+        util.enabled(e.target.nextElementSibling);
+        util.disabled(e.target.nextElementSibling.nextElementSibling);
+        targetTodo.done = false;
+        todoObj.updateTodoList(id, targetTodo);
       } else {
-        target.style.backgroundColor = "red";
-        targetID.done = true;
-        e.target.nextElementSibling.nextElementSibling.style.opacity = "1";
+        targetElement.classList.add("todo-done");
+        util.disabled(e.target.nextElementSibling);
+        util.enabled(e.target.nextElementSibling.nextElementSibling);
+        targetTodo.done = true;
+        todoObj.updateTodoList(id, targetTodo);
       }
-      localStorage.setItem(Constant.TODOS, JSON.stringify(todoObj.todos));
     } else if (e.target.classList.contains("update")) {
       const targetElement =
         e.target.parentElement.previousElementSibling.firstElementChild;
+      console.log(targetElement);
       if (targetElement.nodeName === "SPAN") {
         targetElement.parentElement.replaceChild(
           todoObj.renderInput(targetElement.innerText),
@@ -111,20 +144,12 @@ const todoObj = {
           todoObj.renderSpan(targetElement.value),
           targetElement
         );
+        targetTodo.todo = targetElement.value;
+        todoObj.updateTodoList(id, targetTodo);
       }
-      const targetValue = targetElement.value;
-      function changeTodo(todoid, target) {
-        console.log(todoObj.todos);
-        targetID.todo = target;
-        localStorage.setItem(Constant.TODOS, JSON.stringify(todoObj.todos));
-      }
-
-      changeTodo(todoid, targetValue);
     } else if (e.target.classList.contains("delete")) {
-      if (targetID.done) {
-        e.target.parentElement.parentElement.remove();
-        todoObj.todos = todoObj.todos.filter((todo) => todo.id != todoid);
-      }
+      e.target.parentElement.parentElement.remove();
+      todoObj.todos = todoObj.todos.filter((todo) => todo.id !== id);
       localStorage.setItem(Constant.TODOS, JSON.stringify(todoObj.todos));
     }
   },
@@ -133,17 +158,16 @@ const todoObj = {
     localStorage.setItem(Constant.TODOS, JSON.stringify(todoObj.todos));
   },
   renderTodoItem: function (todo) {
-    console.log("asdasdasd", todo);
-    const todoText = `<div class="todo-item" data-id = ${todo.id} >
-    <div class="left" style = "background-color:${
-      todo.done ? "red" : "transparent"
-    }"><span class="desc" >${todo.todo}</span></div>
-    <div class="right">
-      <button class="done">✅</button>
-      <button class="update">✏️</button>
-      <button class="delete ${todo.done ? "done" : "undone"}" >🗑️</button>
-    </div>
-  </div>`;
+    const todoText = `<div class="todo-item" data-id=${todo.id}>
+      <div class="left"><span class="desc ${todo.done ? "todo-done" : ""}">${
+      todo.todo
+    }</span></div>
+      <div class="right">
+        <button class="done">✅</button>
+        <button class="update">✏️</button>
+        <button class="delete" ${!todo.done && "disabled"}>🗑️</button>
+      </div>
+    </div>`;
     domObj.todoList.innerHTML += todoText;
   },
 };
@@ -157,7 +181,6 @@ const domObj = {
   nameForm: "",
   nameInput: document.querySelector(".name-form input"),
   todoList: document.querySelector(".todo-list"),
-  delete: "",
 
   submitHandler: function (e) {
     e.preventDefault();
@@ -166,7 +189,7 @@ const domObj = {
       location.href = "/";
     } else {
       const todo = {};
-      todo.id = Math.floor(Date.now() * Math.random()).toString(36);
+      todo.id = Math.floor(Math.random() * Date.now()).toString(36);
       todo.todo = e.target.firstElementChild.value;
       todo.done = false;
       todoObj.addTodo(todo);
@@ -182,17 +205,10 @@ const domObj = {
 function init() {
   //db
   todoObj.todos = JSON.parse(localStorage.getItem(Constant.TODOS)) || [];
-
-  setInterval(function () {
-    domObj.clock.innerHTML = clockObj.getClock();
-  }, 1000);
-  const currentName = localStorage.getItem(Constant.NAME);
-  greetingObj.getGreeting(currentName);
-  if (currentName) {
-    todoObj.renderTodo();
-  } else {
-    greetingObj.renderName();
-  }
+  // clock rendering
+  clockObj.renderClock();
+  // greeing rendering
+  greetingObj.renderGreeting();
 }
 
 init();

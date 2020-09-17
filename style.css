@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto:wght@700&display=swap');
-@import './reset.css';
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto:wght@700&display=swap");
+@import "./reset.css";
 
 :root {
   --primary-color: #3f51b5;
@@ -13,7 +13,7 @@
 
 body {
   box-sizing: border-box;
-  font-family: 'Indie Flower', 'Roboto', Arial, Helvetica, sans-serif;
+  font-family: "Indie Flower", "Roboto", Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -32,7 +32,7 @@ body {
 }
 
 .background-img {
-  background-image: url('https://source.unsplash.com/random');
+  background-image: url("https://source.unsplash.com/random");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -115,7 +115,7 @@ main .greeting {
   color: var(--font-color);
 }
 
-.name-form input[type='submit'] {
+.name-form input[type="submit"] {
   margin-top: 2rem;
   padding: 1rem;
   width: 100px;
@@ -148,4 +148,18 @@ main .greeting {
 
 .todo-item .left {
   width: 60%;
+}
+.todo-item .right button {
+  background-color: transparent;
+  border: 0;
+  font-size: 1.3rem;
+  line-height: 100%;
+}
+
+.done {
+  opacity: 1;
+}
+
+.undone {
+  opacity: 0.1;
 }

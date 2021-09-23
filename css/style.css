@@ -1,7 +1,12 @@
+@import './reset.css';
+
 .hidden{
     display: none;
 }
 
 .bg{
     background-image: url(https://source.unsplash.com/random);
+}
+.done{
+    text-decoration: line-through;
 }

@@ -11,16 +11,16 @@
 
 <body>
     <h2 id="clock">00:00:00</h2>
+    <div id="greeting">
+        <h1><span id="time"></span>  <span id="name"></span></h1>
+    </div>
     <form id="login-form" class="hidden">
-        <input required maxlength="15" type="text" placeholder="What is your name">
-        <input type="submit" value="Log In">
+        <label for="name-input">What is your name</label>
+        <input required maxlength="15" type="text" id="name-input" >
     </form>
 
-    <div id="greeting" class="hidden">
-        <h1 id="greeting"></h1>
-        <button>Revise my name</button>
-    </div>
-    <form id="todo-form">
+
+    <form id="todo-form" class="hidden">
         <input type="text" placeholder="Write a to do and press" required>
     </form>
     <ul id="todo-list"></ul>
@@ -29,10 +29,13 @@
         <span></span>
     </div>
 
-<div id="weather"><span></span> <span></span>
-    <img src="" alt=""></div>
-    <script src="js/greetings.js"></script>
+    <div id="weather"><span></span> <span></span>
+        <img src="" alt="">
+    </div>
+
+    <div></div>
     <script src="js/clock.js"></script>
+    <script src="js/greetings.js"></script>
     <script src="js/quotes.js"></script>
     <script src="js/background.js"></script>
     <script src="js/todo.js"></script>

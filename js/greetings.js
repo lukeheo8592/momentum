@@ -1,7 +1,7 @@
 const loginForm = document.getElementById("login-form");
 const loginInput = loginForm.querySelector("input");
-const greeting = document.querySelector("#greeting");
-const revise = document.querySelector("#greeting button");
+const greeting = document.querySelector("#greeting #name");
+const idForm = document.querySelector("#todo-form");
 
 const HIDDEN_CLASSNAME = "hidden";
 const USERNAME_KEY = "username";
@@ -15,21 +15,18 @@ function onLoginSubmit(event) {
 }
 
 function paintGreetings(username) {
-  greeting.classList.remove(HIDDEN_CLASSNAME);
-  greeting.querySelector("h1").innerText = `Hello ${username}`;
+  
+  greeting.innerText = `${username}`;
+  idForm.classList.remove(HIDDEN_CLASSNAME);
 }
 
 const savedUsername = localStorage.getItem(USERNAME_KEY);
 
 if (savedUsername === null) {
+  greeting.innerText = "lovely";
   loginForm.classList.remove(HIDDEN_CLASSNAME);
   loginForm.addEventListener("submit", onLoginSubmit);
 } else {
   paintGreetings(savedUsername);
 }
 
-function onReviseClick() {
-  localStorage.removeItem(USERNAME_KEY);
-  location.reload();
-}
-revise.addEventListener("click", onReviseClick);

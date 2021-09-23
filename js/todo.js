@@ -17,17 +17,35 @@ function deleteToDo(event) {
   saveToDos();
 }
 
+function updateToDoList(id, todo){
+  const idx = toDos.findIndex((todo) => todo.id ===parseInt(id));
+  toDos[idx] = todo;
+  saveToDos();
+}
+function doneToDo(event){
+const id = event.target.parentElement.id;
+const targetToDO = toDos.find((e) => e.id === parseInt(id));
+if(targetToDO.classList.contains("done")){
+  targetToDO.classList.remove("done");
+}else{
+  targetToDO.classList.add("done");
+}
+updateToDoList(id, targetToDO);
+}
 function paintToDo(newToDo) {
   const li = document.createElement("li");
   li.id = newToDo.id;
   const span = document.createElement("span");
   span.innerText = newToDo.text;
-  const button = document.createElement("button");
-  button.innerText = "❌";
-  button.addEventListener("click", deleteToDo);
-  li.appendChild(span);
-  li.appendChild(button);
+  const button1 = document.createElement("button");button1.innerText = "✅";
+  button1.addEventListener("click", doneToDo);
 
+  const button2 = document.createElement("button");
+  button2.innerText = "❌";
+  button2.addEventListener("click", deleteToDo);
+  li.appendChild(span);
+  li.appendChild(button1);
+  li.appendChild(button2);
   toDoList.appendChild(li);
 }
 
@@ -39,6 +57,7 @@ function handleToDoSubmit(event) {
   const newTodoObj = {
     text: newTodo,
     id: Date.now(),
+    done: false,
   };
   toDos.push(newTodoObj);
   paintToDo(newTodoObj);

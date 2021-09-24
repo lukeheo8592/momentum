@@ -2,6 +2,7 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = toDoForm.querySelector("input");
 const toDoList = document.getElementById("todo-list");
 
+
 const TODOS_KEY = "todos";
 
 let toDos = [];
@@ -23,12 +24,17 @@ function updateToDoList(id, todo){
   saveToDos();
 }
 function doneToDo(event){
+const toDoText = event.target.previousSibling;
 const id = event.target.parentElement.id;
+const toDo = event.target.previousElement;
 const targetToDO = toDos.find((e) => e.id === parseInt(id));
-if(targetToDO.classList.contains("done")){
-  targetToDO.classList.remove("done");
+console.log(targetToDO);
+if(toDoText.classList.contains("done")){
+  toDoText.classList.remove("done");
+  targetToDO.done = false;
 }else{
-  targetToDO.classList.add("done");
+  toDoText.classList.add("done");
+  targetToDO.done = true;
 }
 updateToDoList(id, targetToDO);
 }
@@ -37,6 +43,11 @@ function paintToDo(newToDo) {
   li.id = newToDo.id;
   const span = document.createElement("span");
   span.innerText = newToDo.text;
+  if(newToDo.done === true){
+    span.classList.add("done");
+  }else{
+    span.classList.remove("done");
+  }
   const button1 = document.createElement("button");button1.innerText = "✅";
   button1.addEventListener("click", doneToDo);
 

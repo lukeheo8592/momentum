@@ -55,7 +55,7 @@ function mouseEnter() {
   editButton.innerText = "Edit Name";
 }
 function mouseDown() {
-  editButton.innerHTML = "&nbsp &nbsp";
+  editButton.innerHTML = `<i class="fas fa-list"></i>`;
 }
 function makeInput(e) {
   const target = e.target.previousElementSibling.lastChild;

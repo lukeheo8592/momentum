@@ -1,45 +1,45 @@
 const quotes = [
   {
-    quote: "You cannot change what you are only what you do.",
-    author: "Philip Pullman",
+    quote: `"You cannot change what you are only what you do."`,
+    author: `- Philip Pullman -`,
   },
   {
-    quote: " Lay a firm foundation with the bricks that others throw at you.",
-    author: "David Brinkley",
-  },
-  {
-    quote:
-      "Change the way you look at things and the things you look at change.",
-    author: "Wayne Dyer",
+    quote: `" Lay a firm foundation with the bricks that others throw at you."`,
+    author: `- David Brinkley -`,
   },
   {
     quote:
-      " If you run you stand a chance of losing but if you dont run youve already lost",
-    author: "Barack Obama",
-  },
-  {
-    quote: ". If you have always done it that way it is probably wrong.",
-    author: "Charles Kettering",
+    `"Change the way you look at things and the things you look at change."`,
+    author: `- Wayne Dyer -`,
   },
   {
     quote:
-      "The greatest mistake you can make in life is to be continually fearing you will make one.",
-    author: "Elbert Hubbard",
+    `" If you run you stand a chance of losing but if you dont run youve already lost"`,
+    author: `- Barack Obama -`,
+  },
+  {
+    quote: `" If you have always done it that way it is probably wrong."`,
+    author: `- Charles Kettering -`,
   },
   {
     quote:
-      "Not everything that is faced can be changed but nothingcan be changed until it is faced.",
-    author: "James Baldwin",
+    `"The greatest mistake you can make in life is to be continually fearing you will make one."`,
+    author: `- Elbert Hubbard -`,
   },
   {
-    quote: " If work were so pleasant the rich would keep it for themselves.",
-    author: "Mark Twain",
+    quote:
+    `"Not everything that is faced can be changed but nothingcan be changed until it is faced."`,
+    author: `- James Baldwin -`,
   },
   {
-    quote: "Only I can change my life. No one can do it for me.",
-    author: "Carol Burnett",
+    quote: `" If work were so pleasant the rich would keep it for themselves."`,
+    author: `- Mark Twain -`,
   },
-  { quote: "When in doubt choose change.", author: "Lily Leung" },
+  {
+    quote: `"Only I can change my life. No one can do it for me."`,
+    author: `- Carol Burnett -`,
+  },
+  { quote: `"When in doubt choose change."`, author: `- Lily Leung -` },
 ];
 
 const quote = document.querySelector("#quote span:first-child");

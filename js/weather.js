@@ -8,10 +8,12 @@ function onGeoSuccess(position) {
     .then((response) => response.json())
     .then((data) => {
         const city = document.querySelector("#weather span:first-child");
-        const weather = document.querySelector("#weather span:nth-child(2)");
-        const icon = document.querySelector("#weather img:last-child");
+        const weather = document.querySelector(".container-weather__icon span:first-child");
+        const icon = document.querySelector(".container-weather__city img");
+        const temp = document.querySelector(".container-weather__icon span:last-child");
        city.innerText = data.name;
        weather.innerText = data.weather[0].main;
+       temp.innerText= parseInt(data.main.temp)+"°C";
        icon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
     
     });

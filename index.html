@@ -10,31 +10,55 @@
 </head>
 
 <body>
-    <h2 id="clock">00:00:00</h2>
-    <div id="greeting">
-        <h1><span id="time"></span>  <span id="name"></span></h1>
-        <button  class="hidden" id="edit-button"><i class="fas fa-list"></i></button>
+    <div class="container">
+
+        <div class="container-main">
+
+            <h2 id="clock" class="clock">00:00:00</h2>
+            <div id="greeting" class="greeting">
+                <div> <h1><span id="time"></span> <span id="name"></span></h1></div>
+               <div class="transition">  <button id="edit-button" ></button></div>
+              
+            </div>
+            <form id="login-form" class="write-name" autocomplete="off">
+                <label for="name-input">What is your name</label>
+                <input required maxlength="15" type="text" id="name-input">
+            </form>
+
+
+            <form id="todo-form" class="hidden write-to-do" autocomplete="off">
+                <label for="toDo">What is your main focus for today</label>
+                <input type="text" id="toDo"   required>
+            </form>
+            <ul id="todo-list">
+            </ul>
+            <div id="quote" class="quote">
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="container-weather">
+                <div id="weather" class="container-weather__city"><span></span>
+                    <span><img src="" alt=""></span>
+                </div>
+    
+                <div class="container-weather__icon">
+                    <span></span>
+                    <span></span>
+    
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; Geunhyeok
+            </div>
+        </div>
+
+        
+
+
     </div>
-    <form id="login-form" class="hidden">
-        <label for="name-input">What is your name</label>
-        <input required maxlength="15" type="text" id="name-input" >
-    </form>
 
-
-    <form id="todo-form" class="hidden">
-        <input type="text" placeholder="Write a to do and press" required>
-    </form>
-    <ul id="todo-list"></ul>
-    <div id="quote">
-        <span></span>
-        <span></span>
-    </div>
-
-    <div id="weather"><span></span> <span></span>
-        <img src="" alt="">
-    </div>
-
-    <div></div>
     <script src="js/clock.js"></script>
     <script src="js/greetings.js"></script>
     <script src="js/quotes.js"></script>

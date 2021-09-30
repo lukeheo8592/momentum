@@ -46,7 +46,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 width: 100%;
-
+transition: opacity 0.5s ease-in-out;
 }
 
 .container-main .greeting #time,
@@ -60,11 +60,10 @@ width: 100%;
     margin-left: 15px;
     margin-top: 15px;
     border: 0px;
-    font-size: 25px;
+    font-size: 30px;
     background-color: transparent;
+    transition: opacity 0.5s ease-in-out;
 }
-
-
 
 /* name(good morning) */
 
@@ -122,6 +121,7 @@ width: 100%;
     align-items: center;
     margin-top: 50px;
     width: 100%;
+    transition: opacity 1.5s ease-in-out;
 }
 
 .container-main .write-to-do label{
@@ -265,4 +265,8 @@ outline: none;
 
 .done{
     text-decoration: line-through;
+}
+
+.hide{
+    opacity: 0;
 }

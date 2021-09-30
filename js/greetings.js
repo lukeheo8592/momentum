@@ -1,6 +1,7 @@
 const loginForm = document.getElementById("login-form");
 const loginInput = loginForm.querySelector("input");
 const greeting = document.querySelector("#greeting #name");
+const greetingLine = document.querySelector("#greeting");
 const idForm = document.querySelector("#todo-form");
 const editButton = document.querySelector("#edit-button");
 
@@ -32,9 +33,21 @@ function onLoginSubmit(event) {
 }
 
 function paintGreetings(username) {
-  greeting.innerText = `${username}`;
+  greetingLine.classList.add("hide");
+  setTimeout(function() { 
+    getTime(hours.getHours());
+    greeting.innerText = `${username}`;
+}, 500);
+setTimeout(function() { 
+  greetingLine.classList.remove("hide")
+}, 500);
+  
   loginForm.classList.add(HIDDEN_CLASSNAME);
-  idForm.classList.remove(HIDDEN_CLASSNAME);
+  setTimeout(function() { 
+    idForm.classList.remove("hide");
+  }, 700);
+  
+  
   editButton.innerHTML = `<i class="fas fa-ellipsis-h"></i>`;
 }
 
@@ -54,10 +67,24 @@ function renderSpan(name) {
   return span;
 }
 function mouseEnter() {
-  editButton.innerText = "Edit Name";
+  editButton.classList.add("hide");
+  setTimeout(function() { 
+    editButton.innerText = "Edit Name";
+}, 500);
+setTimeout(function() { 
+  editButton.classList.remove("hide")
+}, 500);
+  
 }
 function mouseDown() {
-  editButton.innerHTML = `<i class="fas fa-ellipsis-h"></i>`;
+  editButton.classList.add("hide");
+  setTimeout(function() { 
+    editButton.innerHTML = `<i class="fas fa-ellipsis-h"></i>`;
+}, 500);
+setTimeout(function() { 
+  editButton.classList.remove("hide")
+}, 500);
+  
 }
 function makeInput(e) {
   const target = e.target.parentElement.previousElementSibling.lastChild.lastChild;

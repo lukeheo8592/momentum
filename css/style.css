@@ -8,7 +8,10 @@ body{
 
 /* background-image */
 .background-image{
-    display: none;
+    position: absolute;
+    z-index: -10;
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -23,7 +26,6 @@ body{
     align-items: center;
     box-sizing: border-box;
     height: 100%;
-    background-color: red;
 }
 
 .container-main{
@@ -161,7 +163,6 @@ transition: opacity 0.5s ease-in-out;
     justify-content: center;
     align-items: center;
     margin: 0px 80px;
-    
 }
 
 .container-main #todo-list li{
@@ -170,6 +171,7 @@ transition: opacity 0.5s ease-in-out;
     align-items: center;
     width: 100%;
     height: 50px;
+    transition: opacity 0.5s ease-in-out;
 }
 .container-main #todo-list li>span{
     padding: 0px 0 50 40px;
@@ -210,6 +212,7 @@ outline: none;
     justify-content:center;
     align-items: center;
     text-align: center;
+    color: white;
 }
 
 /* weather container */
@@ -219,6 +222,9 @@ outline: none;
     right:0px;
     display: flex;
     margin-right: 10px;
+    color: white;
+    opacity: 0.9;
+    color: rgba(red, green, blue, alpha);
 }
 .container-weather__city{
     display: flex;
@@ -248,6 +254,7 @@ outline: none;
     bottom: 10px;
     left:10px;
     margin-right: 10px;
+    color: white;
 }
 
 

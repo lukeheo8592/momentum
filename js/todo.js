@@ -57,7 +57,13 @@ function paintToDo(newToDo) {
   li.appendChild(span);
   li.appendChild(button1);
   li.appendChild(button2);
+  li.classList.add("hide");
   toDoList.appendChild(li);
+
+  setTimeout(function() { 
+    li.classList.remove("hide");
+  }, 500);
+  
   
 }
 
